@@ -60,8 +60,13 @@ final echoProvider = Provider.family<Future<Message>, String>((ref, message) {
 
 final echosProvider = FutureProvider((ref) {
   return Future.wait([
+    Future.delayed(const Duration(seconds: 3)),
     ref.watch(echoProvider("${Random().nextInt(10)}")),
     ref.watch(echoProvider("${Random().nextInt(10)}")),
     ref.watch(echoProvider("${Random().nextInt(10)}")),
   ]);
 });
+
+/// dummy 用
+final updateProvider =
+    Provider((ref) => Future.delayed(const Duration(seconds: 3)));
